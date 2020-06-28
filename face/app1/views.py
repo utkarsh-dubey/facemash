@@ -26,7 +26,7 @@ def index(request):
 	left.save()
 	right.save()
 
-	winner_number = 1
+	winner_number = 97
 	winner =''
 	loser=''
 	if 'first' in request.POST:
@@ -59,8 +59,11 @@ def rankings(request):
 			item.votePer = 0.0
 		else:
 			item.votePer = item.voted/item.selected
+
+		if(item.votePer>1.0):
+			item.votePer=0.85
 		data[i]=item.votePer
-	print(data)
+	
 	sortedList = sorted(data.items() , key=lambda t : t[1], reverse=True)
 	args = {}
 	temp=[]
@@ -70,7 +73,7 @@ def rankings(request):
 		temp[i]="/static/"+str(temp[i])+".jpg"
 
 	args["data"]=temp	
-	print(args)
+	
 
 	return render(request, 'ranking.html', args)
 	
