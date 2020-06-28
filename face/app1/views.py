@@ -8,7 +8,6 @@ def index(request):
 	
 	a = randint(1, 94)
 	b = randint(1, 94)
-	print(a)
 	while a==b:
 		b - randint(1, 56)
 	filepath = "/static/"+str(a)+".jpg"
@@ -22,11 +21,11 @@ def index(request):
 	right = dataBase.objects.get(id=b)
 	left.selected = left.selected+1
 	right.selected = right.selected+1
-	print(left.selected)
-	print(right.selected)
+
 
 	left.save()
 	right.save()
+
 
 	winner =''
 	loser=''
@@ -34,17 +33,19 @@ def index(request):
 		winner='first'
 		winner_number=request.POST['first']
 		winner_number=winner_number[winner_number.index('c')+2:winner_number.index('.')]
-		loser='second'
+		loser='second' 
 	elif 'second' in request.POST:
 		winner='second'
 		winner_number=request.POST['second']
 		winner_number=winner_number[winner_number.index('c')+2:winner_number.index('.')]
 		loser='first'
 
+
 	winner = dataBase.objects.get(id=winner_number)
 	winner.voted=winner.voted+1
-	print(winner.voted)
+	
 	winner.save()
+
 
 		
 	return render(request,'home.html',args)
