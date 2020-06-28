@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from random import randint
+from app1.models import dataBase
 
 
 def index(request):
@@ -16,6 +17,17 @@ def index(request):
 		"a":filepath,
 		"b":filepath2
 	}
+
+	left = dataBase.objects.get(id=a)
+	right = dataBase.objects.get(id=b)
+	left.selected = left.selected+1
+	right.selected = right.selected+1
+	print(left.selected)
+	print(right.selected)
+
+	left.save()
+	right.save()
+
 	winner =''
 	loser=''
 	if 'first' in request.POST:
@@ -28,6 +40,11 @@ def index(request):
 		winner_number=request.POST['second']
 		winner_number=winner_number[winner_number.index('c')+2:winner_number.index('.')]
 		loser='first'
+
+	winner = dataBase.objects.get(id=winner_number)
+	winner.voted=winner.voted+1
+	print(winner.voted)
+	winner.save()
 
 		
 	return render(request,'home.html',args)
