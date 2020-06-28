@@ -2,5 +2,14 @@
 
 {% block content%}
 <h1>Rankings</h1>
-{% load static %}
 
+
+{% for i in data%}
+
+		<img src={{i}} alt="First"  width=30% height=auto> 
+
+{%  endfor %}
+
+
+
+{%endblock%}

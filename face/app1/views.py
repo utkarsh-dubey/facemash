@@ -63,8 +63,14 @@ def rankings(request):
 	print(data)
 	sortedList = sorted(data.items() , key=lambda t : t[1], reverse=True)
 	args = {}
-	for k,v in sortedList[:10]:
-		args[k]=v
-	
+	temp=[]
+	for i in sortedList[:10]:
+		temp.append(i[0])
+	for i in range(len(temp)):
+		temp[i]="/static/"+str(temp[i])+".jpg"
+
+	args["data"]=temp	
+	print(args)
+
 	return render(request, 'ranking.html', args)
 	
