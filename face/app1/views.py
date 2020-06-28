@@ -26,7 +26,7 @@ def index(request):
 	left.save()
 	right.save()
 
-
+	winner_number = 1
 	winner =''
 	loser=''
 	if 'first' in request.POST:
@@ -46,6 +46,25 @@ def index(request):
 	
 	winner.save()
 
-
 		
 	return render(request,'home.html',args)
+
+def rankings(request):
+
+	sortedList = []
+	data = {}
+	for i in range(1, 96):
+		item = dataBase.objects.get(id=i)
+		if item.selected == 0:
+			item.votePer = 0.0
+		else:
+			item.votePer = item.voted/item.selected
+		data[i]=item.votePer
+	print(data)
+	sortedList = sorted(data.items() , key=lambda t : t[1], reverse=True)
+	args = {}
+	for k,v in sortedList[:10]:
+		args[k]=v
+	
+	return render(request, 'ranking.html', args)
+	
