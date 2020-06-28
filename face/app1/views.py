@@ -6,10 +6,10 @@ from app1.models import dataBase
 def index(request):
 	
 	
-	a = randint(1, 94)
-	b = randint(1, 94)
+	a = randint(1, 123)
+	b = randint(1, 123)
 	while a==b:
-		b - randint(1, 56)
+		b = randint(1,123 )
 	filepath = "/static/"+str(a)+".jpg"
 	filepath2 = "/static/"+str(b)+".jpg"
 	args = {
@@ -26,7 +26,7 @@ def index(request):
 	left.save()
 	right.save()
 
-	winner_number = 97
+	winner_number = 124
 	winner =''
 	loser=''
 	if 'first' in request.POST:
@@ -53,7 +53,7 @@ def rankings(request):
 
 	sortedList = []
 	data = {}
-	for i in range(1, 96):
+	for i in range(1, 123):
 		item = dataBase.objects.get(id=i)
 		if item.selected == 0:
 			item.votePer = 0.0
