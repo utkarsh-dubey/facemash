@@ -8,5 +8,10 @@
 
 <img src={{a}} alt="First" max-width=100% width=40% height=auto> 
 <img src={{b}} alt="Second" max-width=100% width=40% height = auto>
+<form>
+{% csrf_token%}
+<a href=""><button type="submit" name='first' value='first' formmethod="POST">Vote</button></a>
+<a href=""><button type="submit" name='second' value='second' formmethod="POST">Vote</button></a>
+</form>
 
 {%endblock%}
