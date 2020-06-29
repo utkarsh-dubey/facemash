@@ -9,10 +9,10 @@ def index(request):
 
 def boys(request):
 
-	a = randint(1, 32)
-	b = randint(1, 32)
+	a = randint(1, 103)
+	b = randint(1, 103)
 	while a==b:
-		b = randint(1,32 )
+		b = randint(1,103 )
 	filepath = "/static/boys/"+str(a)+".jpg"
 	filepath2 = "/static/boys/"+str(b)+".jpg"
 	args = {
@@ -29,7 +29,7 @@ def boys(request):
 	left.save()
 	right.save()
 
-	winner_number = 35
+	winner_number = 105
 	winner =''
 	loser=''
 	if 'first' in request.POST:
@@ -133,7 +133,7 @@ def ranking2(request):
 
 	sortedList = []
 	data = {}
-	for i in range(1, 32):
+	for i in range(1, 103):
 		item = dataBase2.objects.get(id=i)
 		if item.selected == 0:
 			item.votePer = 0.0
