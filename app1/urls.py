@@ -5,7 +5,10 @@ from . import views
 
 urlpatterns=[
 	path('',views.index, name='index'),
-	path('ranking/',views.rankings,name='ranking'),
+	path('home/',views.home, name='home'),
+	path('boys/ranking2/',views.ranking2, name='ranking2'),
+	path('boys',views.boys, name='boys'),
+	path('home/ranking/',views.rankings,name='ranking'),
 ]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
