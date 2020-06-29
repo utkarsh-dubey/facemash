@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from random import randint
-from app1.models import dataBase
+from app1.models import dataBase,dataBase2
 
 
 def index(request):
@@ -9,10 +9,10 @@ def index(request):
 
 def boys(request):
 
-	a = randint(1, 123)
-	b = randint(1, 123)
+	a = randint(1, 32)
+	b = randint(1, 32)
 	while a==b:
-		b = randint(1,123 )
+		b = randint(1,32 )
 	filepath = "/static/boys/"+str(a)+".jpg"
 	filepath2 = "/static/boys/"+str(b)+".jpg"
 	args = {
@@ -29,18 +29,18 @@ def boys(request):
 	left.save()
 	right.save()
 
-	winner_number = 124
+	winner_number = 35
 	winner =''
 	loser=''
 	if 'first' in request.POST:
 		winner='first'
 		winner_number=request.POST['first']
-		winner_number=winner_number[winner_number.index('c')+2:winner_number.index('.')]
+		winner_number=winner_number[winner_number.index('c')+7:winner_number.index('.')]
 		loser='second' 
 	elif 'second' in request.POST:
 		winner='second'
 		winner_number=request.POST['second']
-		winner_number=winner_number[winner_number.index('c')+2:winner_number.index('.')]
+		winner_number=winner_number[winner_number.index('c')+7:winner_number.index('.')]
 		loser='first'
 
 
@@ -83,12 +83,12 @@ def home(request):
 	if 'first' in request.POST:
 		winner='first'
 		winner_number=request.POST['first']
-		winner_number=winner_number[winner_number.index('c')+2:winner_number.index('.')]
+		winner_number=winner_number[winner_number.index('c')+8:winner_number.index('.')]
 		loser='second' 
 	elif 'second' in request.POST:
 		winner='second'
 		winner_number=request.POST['second']
-		winner_number=winner_number[winner_number.index('c')+2:winner_number.index('.')]
+		winner_number=winner_number[winner_number.index('c')+8:winner_number.index('.')]
 		loser='first'
 
 
@@ -98,7 +98,7 @@ def home(request):
 	winner.save()
 
 		
-	return render(request,'home.html',args)
+	return render(request,'girls.html',args)
 
 def rankings(request):
 
@@ -133,8 +133,8 @@ def ranking2(request):
 
 	sortedList = []
 	data = {}
-	for i in range(1, 123):
-		item = dataBase.objects.get(id=i)
+	for i in range(1, 32):
+		item = dataBase2.objects.get(id=i)
 		if item.selected == 0:
 			item.votePer = 0.0
 		else:
@@ -150,7 +150,7 @@ def ranking2(request):
 	for i in sortedList[:10]:
 		temp.append(i[0])
 	for i in range(len(temp)):
-		temp[i]="/static/"+str(temp[i])+".jpg"
+		temp[i]="/static/boys/"+str(temp[i])+".jpg"
 
 	args["data"]=temp
 
