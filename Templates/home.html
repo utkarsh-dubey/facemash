@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+
+{% block content%}
+<h1>Vote</h1>
+{% load static %}
+
+
+<img src={{a}} alt="First"  width=30% height=auto> 
+<img src={{b}} alt="Second"  width=30% height = auto>
+<form method="POST" >
+{% csrf_token%}
+<a href=""><button type="submit" class="btn btn1" id="one" name='first' value={{a}} formmethod="POST">Vote</button></a>
+<a href=""><button type="submit" class="btn btn2" id="two" name='second' value={{b}} formmethod="POST">Vote</button></a>
+</form>
+
+{%endblock%}
